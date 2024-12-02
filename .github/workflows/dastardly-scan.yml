@@ -1,0 +1,25 @@
+name: Dastardly Scan
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Run Dastardly Scan Action
+      uses: PortSwigger/dastardly-github-action@main
+      with:
+        target-url: 'https://ginandjuice.shop' 
+        output-filename: 'dastardly-report.xml'
+
+    - name: Publish Test Report
+      if: always()
+      uses: mikepenz/action-junit-report@v3
+      with:
+        report_paths: '**/dastardly-report.xml'
+        require_tests: true
