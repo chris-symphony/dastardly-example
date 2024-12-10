@@ -21,6 +21,12 @@ jobs:
         target-url: 'https://ginandjuice.shop' 
         output-filename: 'dastardly-report.xml'
 
+    - name: Upload results
+      uses: actions/upload-artifact@main
+      with:
+        name: dastardly-report.xml
+        path: ./
+
     - name: Publish Test Report
       if: always()
       uses: mikepenz/action-junit-report@main
