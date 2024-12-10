@@ -27,3 +27,5 @@ jobs:
       with:
         report_paths: '**/dastardly-report.xml'
         require_tests: true
+        summary: true
+        job_summary: true
