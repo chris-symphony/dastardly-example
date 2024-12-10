@@ -9,9 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@main
       
     - name: Run Dastardly Scan Action
+      continue-on-error: true
       uses: PortSwigger/dastardly-github-action@main
       with:
         target-url: 'https://ginandjuice.shop' 
@@ -19,7 +20,7 @@ jobs:
 
     - name: Publish Test Report
       if: always()
-      uses: mikepenz/action-junit-report@v3
+      uses: mikepenz/action-junit-report@main
       with:
         report_paths: '**/dastardly-report.xml'
         require_tests: true
